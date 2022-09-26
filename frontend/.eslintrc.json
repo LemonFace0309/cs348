@@ -1,0 +1,69 @@
+{
+	"env": {
+		"browser": true,
+		"node": true
+	},
+	"plugins": [
+		"@typescript-eslint",
+		"graphql",
+		"simple-import-sort",
+		"import-name",
+		"prettier"
+	],
+	"extends": [
+		"eslint:recommended",
+		"plugin:react-hooks/recommended",
+		"plugin:tailwind/recommended",
+		"plugin:import/typescript",
+		"next/core-web-vitals"
+	],
+	"rules": {
+		// eslint:recommended
+		"no-console": ["warn", { "allow": ["error"] }],
+
+		// eslint-plugin-prettier
+		"prettier/prettier": "error",
+
+		// simple-import-sort
+		"simple-import-sort/exports": "error",
+		"simple-import-sort/imports": [
+			"error",
+			{
+				"groups": [
+					// React and Next come first
+					["^(react|next)(/.*|$)"],
+					// External packages.
+					["^@?\\w"],
+					// Internal packages.
+					["^(@|@src|@root)(/.*|$)"],
+					// Side effect imports.
+					["^\\u0000"],
+					// Other relative imports. Put same-folder imports and `.` last.
+					["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+					// Parent imports. Put `..` last.
+					["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+					// Style imports.
+					["^.+\\.s?css$"]
+				]
+			}
+		],
+
+		"import-name/default-import-name": ["error", { "classnames": "cx" }],
+
+		// react
+		"react/jsx-key": "error",
+		"react/jsx-no-target-blank": "warn",
+		"react/no-deprecated": "warn",
+		"react/no-unknown-property": "error",
+		"react/react-in-jsx-scope": "off",
+		"react-hooks/rules-of-hooks": "error",
+		"react-hooks/exhaustive-deps": "warn",
+		"react/function-component-definition": [
+			0,
+			{
+				"namedComponents": "arrow-function",
+				"unnamedComponents": "arrow-function"
+			}
+		]
+	}
+}
