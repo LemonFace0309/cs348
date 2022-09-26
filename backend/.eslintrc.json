@@ -1,0 +1,93 @@
+{
+  "env": {
+    "node": true
+  },
+  "plugins": ["@typescript-eslint", "simple-import-sort", "prettier"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript"
+  ],
+  "rules": {
+    // eslint:recommended
+    "no-console": ["warn", { "allow": ["error"] }],
+
+    // eslint-plugin-prettier
+    "prettier/prettier": "error",
+
+    // plugin:import
+    "import/named": "off",
+
+    // simple-import-sort
+    "simple-import-sort/exports": "error",
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          // External packages.
+          ["^@?\\w"],
+          // Internal packages.
+          ["^(@|@src|@root)(/.*|$)"],
+          // Side effect imports.
+          ["^\\u0000"],
+          // Other relative imports. Put same-folder imports and `.` last.
+          ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+          // Parent imports. Put `..` last.
+          ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+          // Style imports.
+          ["^.+\\.s?css$"]
+        ]
+      }
+    ]
+  },
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".graphql", ".js", ".jsx", ".svg", ".ts", ".tsx"],
+        "paths": [".", "node_modules", "src"]
+      }
+    }
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@typescript-eslint/recommended"],
+      "rules": {
+        // plugin:typescript-eslint
+        "@typescript-eslint/ban-ts-comment": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/no-unused-vars": [
+          "warn",
+          {
+            "ignoreRestSiblings": true,
+            "argsIgnorePattern": "^(_|unused)",
+            "varsIgnorePattern": "^(_|unused|React)"
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.graphql"],
+      "parser": "@graphql-eslint/eslint-plugin",
+      "plugins": ["@graphql-eslint"],
+      "rules": {
+        // '@graphql-eslint/no-unreachable-types': 'error',
+        "@graphql-eslint/no-duplicate-fields": "error"
+      },
+      "parserOptions": {
+        "schema": "./src/apollo/schema.graphql"
+      }
+    }
+  ],
+  "ignorePatterns": [
+    "node_modules",
+    "build",
+    "coverage",
+    "**/__generated__/**/*",
+    "**/*.d.ts"
+  ]
+}
