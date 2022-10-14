@@ -20,6 +20,7 @@
     "posttest": "yarn run lint"
   },
   "dependencies": {
+    "csv-parser": "^3.0.0",
     "dotenv": "^16.0.3",
     "twitter-api-v2": "^1.12.8"
   }
