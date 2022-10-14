@@ -1,24 +1,18 @@
-console.log('Try npm run lint/fix!');
+import * as dotenv from 'dotenv';
+import {TwitterApi} from 'twitter-api-v2';
 
-const longString =
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut aliquet diam.';
+dotenv.config();
 
-const trailing = 'Semicolon';
+// Instantiate with desired auth type (here's Bearer v2 auth)
+const twitterClient = new TwitterApi(process.env.TWITTER_API_BEARER as string);
 
-const why = 'am I tabbed?';
+// Tell typescript it's a readonly app
+const readOnlyClient = twitterClient.readOnly;
 
-export function doSomeStuff(
-  withThis: string,
-  andThat: string,
-  andThose: string[]
-) {
-  //function on one line
-  if (!andThose.length) {
-    return false;
-  }
-  console.log(withThis);
-  console.log(andThat);
-  console.dir(andThose);
-  return;
+async function main() {
+  // Play with the built in methods
+  const user = await readOnlyClient.v2.userByUsername('CharlesLiu9');
+  console.log(user);
 }
-// TODO: more examples
+
+main();
