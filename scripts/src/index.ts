@@ -1,24 +1,34 @@
-console.log('Try npm run lint/fix!');
+import fs from 'fs';
 
-const longString =
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut aliquet diam.';
+import csv from 'csv-parser';
+import * as dotenv from 'dotenv';
+import {TwitterApi} from 'twitter-api-v2';
 
-const trailing = 'Semicolon';
+import type {User} from './types';
 
-const why = 'am I tabbed?';
+dotenv.config();
 
-export function doSomeStuff(
-  withThis: string,
-  andThat: string,
-  andThose: string[]
-) {
-  //function on one line
-  if (!andThose.length) {
-    return false;
-  }
-  console.log(withThis);
-  console.log(andThat);
-  console.dir(andThose);
-  return;
+// Instantiate with desired auth type (here's Bearer v2 auth)
+const twitterClient = new TwitterApi(process.env.TWITTER_API_BEARER as string);
+
+// Tell typescript it's a readonly app
+const readOnlyClient = twitterClient.readOnly;
+
+function readCSV() {
+  const results: User[] = [];
+  fs.createReadStream('users.csv')
+    .pipe(csv())
+    .on('data', data => results.push(data))
+    .on('end', () => {
+      console.log(results);
+    });
 }
-// TODO: more examples
+
+async function main() {
+  // Play with the built in methods
+  const user = await readOnlyClient.v2.userByUsername('CharlesLiu9');
+  console.log(user);
+  readCSV();
+}
+
+main();
