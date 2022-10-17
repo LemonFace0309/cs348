@@ -37,27 +37,16 @@ async function populateDb(driver: Driver) {
     database: 'neo4j',
     defaultAccessMode: neo4j.session.WRITE,
   });
-  console.log(session);
 
   // Run a Cypher statement, reading the result in a streaming manner as records arrive:
-  session
-    .run('MERGE (alice:Person {name : $nameParam}) RETURN alice.name AS name', {
+  const res = await session.run(
+    'MERGE (alice:Person {name : $nameParam}) RETURN alice.name AS name',
+    {
       nameParam: 'Alice',
-    })
-    .subscribe({
-      onKeys: keys => {
-        console.log(keys);
-      },
-      onNext: record => {
-        console.log(record.get('name'));
-      },
-      onCompleted: () => {
-        session.close(); // returns a Promise
-      },
-      onError: error => {
-        console.log(error);
-      },
-    });
+    }
+  );
+
+  console.log(res);
 }
 
 async function closeDb(driver: Driver) {
@@ -65,11 +54,9 @@ async function closeDb(driver: Driver) {
 }
 
 async function main() {
-  // Play with the built in methods
   const user = await readOnlyClient.v2.userByUsername('CharlesLiu9');
   // readCSV();
   const driver = await initDb();
-  console.log(driver);
   await populateDb(driver);
   await closeDb(driver);
 }
