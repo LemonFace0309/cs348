@@ -4,13 +4,11 @@ services:
     image: "neo4j:latest"
     ports:
       - "7687:7687"
-      - "7473:7473"
       - "7474:7474"
     volumes:
-      - "$HOME/neo4j/data:/data neo4j"
-      - "$HOME/neo4j/data:/data"
-      - "$HOME/neo4j/logs:/logs"
-      - "$HOME/neo4j/import:/var/lib/neo4j/import"
-      - "$HOME/neo4j/plugins:/plugins"
+      - neo4j_data:/data
+      - ./scripts/lib/import:/var/lib/neo4j/import
     environment:
       - NEO4J_AUTH=neo4j/development
+volumes:
+  neo4j_data:
