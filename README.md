@@ -2,7 +2,7 @@
 
 ### Getting Started (frontend)
 
-1. Ensure you are using node -v18
+1. Ensure you are using node -v16
 
 2. Now run the following
 
@@ -16,7 +16,7 @@ npm run dev
 
 ### Getting Started (backend)
 
-1. Ensure you are using node -v18
+1. Ensure you are using node -v16
 
 2. Now run the following
 
@@ -34,7 +34,7 @@ npm run dev
 
 2. Run `docker-compose up` to create a local instance of neo4j
 
-3. Run the following to add permissions back to local import scripts.
+3. Run the following to add permissions back to local import scripts that were changed after running `docker-copose`.
 
 ```{bash}
 sudo chmod a+rwx scripts/lib/import
