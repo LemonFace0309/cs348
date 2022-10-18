@@ -1,4 +1,4 @@
-export interface User {
+export interface CsvUser {
   twitter: string;
   domain: string;
   name: string;

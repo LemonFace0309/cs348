@@ -34,9 +34,11 @@ npm run dev
 
 2. Run `docker-compose up` to create a local instance of neo4j
 
-3. Open up `http://localhost:7474` in the browser and login with username: `neo4j` and password: `development`
+3. Run `sudo chmod a+rwx scripts/lib/import scripts/lib/import/` to add permissions back to local import scripts.
 
-4. To get some dummy data, copy and paste the following in the terminal at the top of the browser application
+4. Open up `http://localhost:7474` in the browser and login with username: `neo4j` and password: `development`
+
+5. To get some dummy data, copy and paste the following in the terminal at the top of the browser application
 
 ```
 CREATE (TheMatrix:Movie {title:'The Matrix', released:1999, tagline:'Welcome to the Real World'})
