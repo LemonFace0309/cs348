@@ -34,7 +34,12 @@ npm run dev
 
 2. Run `docker-compose up` to create a local instance of neo4j
 
-3. Run `sudo chmod a+rwx scripts/lib/import scripts/lib/import/` to add permissions back to local import scripts.
+3. Run the following to add permissions back to local import scripts.
+
+```{bash}
+sudo chmod a+rwx scripts/lib/import
+sudo chmod a+rwx scripts/lib/import/*
+```
 
 4. Open up `http://localhost:7474` in the browser and login with username: `neo4j` and password: `development`
 
