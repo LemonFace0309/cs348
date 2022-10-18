@@ -37,8 +37,7 @@ npm run dev
 3. Run the following to add permissions back to local import scripts that were changed after running `docker-copose`.
 
 ```{bash}
-sudo chmod a+rwx scripts/lib/import
-sudo chmod a+rwx scripts/lib/import/*
+sudo chmod -R a+rwx scripts/lib/import
 ```
 
 4. Open up `http://localhost:7474` in the browser and login with username: `neo4j` and password: `development`

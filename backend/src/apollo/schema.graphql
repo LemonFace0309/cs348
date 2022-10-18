@@ -1,0 +1,15 @@
+type Query {
+  user(username: String!): User
+  users(usernames: [String!]!): [User]!
+}
+
+type User {
+  id: Int!
+  name: String!
+  username: String!
+  created_at: Int
+  domain: String
+  followers_count: Int
+  following_count: Int
+  tweet_count: Int
+}

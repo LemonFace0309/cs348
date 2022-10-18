@@ -24,10 +24,10 @@
     "baseUrl": ".",
     "rootDir": ".",
     "outDir": "build",
+    "typeRoots": ["./src/typings"],
     "paths": {
       "@src/*": ["src/*"]
-    },
-    "typeRoots": ["./node_modules/@types", "src/typings"]
+    }
   },
   "include": ["src"],
   "exclude": ["node_modules", "coverage", "build", "src/**/*.test.ts"]
