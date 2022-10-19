@@ -554,3 +554,6 @@ CREATE (TheMatrix:Movie {title:'The Matrix', released:1999, tagline:'Welcome to 
       WITH TomH as a
       MATCH (a)-[:ACTED_IN]->(m)<-[:DIRECTED]-(d) RETURN a,m,d LIMIT 10;
 ```
+
+# Sample Data 
+Go into scripts/lib/samples and execute the `sample-nodes.cypher` and `samples-edges.cypher` respectively to build a sample graph. 
