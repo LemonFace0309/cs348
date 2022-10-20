@@ -48,3 +48,7 @@ sudo chmod -R a+rwx scripts/lib/import
 scripts/lib/samples/sample-nodes.cypher
 scripts/lib/samples/sample-edges.cypher
 ```
+
+# Sample Data 
+Go into scripts/lib/samples and execute the `sample-nodes.cypher` and `samples-edges.cypher` respectively to build a sample graph in order to 
+execute the sample queries provided!
