@@ -9,7 +9,7 @@
 ```{bash}
 cd frontend
 yarn
-npm run dev
+yarn dev
 ```
 
 3. Open `http://localhost:3000` in your browser
@@ -23,7 +23,7 @@ npm run dev
 ```{bash}
 cd backend
 yarn
-npm run dev
+yarn dev
 ```
 
 3. Open `http://localhost:8000` in your browser
