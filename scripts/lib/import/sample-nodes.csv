@@ -1,11 +1,11 @@
-name
-justinbieber
-taylorswift13
-rihanna
-ladygaga
-jtimberlake
-TheEllenShow
-britneyspears
-Cristiano
-KimKardashian
-katyperry
+username,follower,following,created_at,name
+katyperry,108901986,244,2009-02-20T23:45:56.000Z,KATY PERRY
+justinbieber,113895387,282270,2009-03-28T16:41:22.000Z,Justin Bieber
+taylorswift13,91323124,0,2008-12-06T10:10:54.000Z,Taylor Swift
+rihanna,106830324,986,2009-10-02T21:37:33.000Z,Rihanna
+ladygaga,84959959,117388,2008-03-26T22:37:48.000Z,Lady Gaga
+jtimberlake,62929435,338,2009-03-25T19:10:50.000Z,Justin Timberlake
+TheEllenShow,77267801,26202,2008-08-14T03:50:42.000Z,Ellen DeGeneres
+britneyspears,56093231,361924,2008-09-22T20:47:35.000Z,Britney Spears 🌹🚀
+Cristiano,104050515,62,2010-06-14T19:09:20.000Z,Cristiano Ronaldo
+KimKardashian,73858318,123,2009-03-19T19:21:56.000Z,Kim Kardashian
