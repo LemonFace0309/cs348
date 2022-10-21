@@ -47,4 +47,5 @@ sudo chmod -R a+rwx scripts/lib/import
 ```
 scripts/lib/samples/init-users.cypher
 scripts/lib/samples/init-relationship.cypher
+scripts/lib/samples/init-tweets.cypher
 ```
