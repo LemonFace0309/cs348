@@ -1,0 +1,28 @@
+[
+	{
+	"identity": 0,
+	"labels": [
+		"User"
+	],
+	"properties": {
+		"createdAt": "2009-02-20T23:45:56.000Z",
+		"followCount": 244,
+		"name": "KATY PERRY",
+		"followerCount": 108901986,
+		"username": "katyperry"
+	}
+	},
+	{
+	"identity": 1,
+	"labels": [
+		"User"
+	],
+	"properties": {
+		"createdAt": "2009-03-28T16:41:22.000Z",
+		"followCount": 282270,
+		"name": "Justin Bieber",
+		"followerCount": 113895387,
+		"username": "justinbieber"
+	}
+	}
+]

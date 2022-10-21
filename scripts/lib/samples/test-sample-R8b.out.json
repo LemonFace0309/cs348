@@ -1,0 +1,13 @@
+{
+	"identity": 10,
+	"labels": [
+		"User"
+	],
+	"properties": {
+		"createdAt": "2007-04-18T20:50:14.000Z",
+		"followCount": 282270,
+		"name": "Barack Obama",
+		"followerCount": 113895387,
+		"username": "BarackObama"
+	}
+}
