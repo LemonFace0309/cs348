@@ -45,6 +45,6 @@ sudo chmod -R a+rwx scripts/lib/import
 5. To get some dummy data, copy and paste the following files in the terminal at the top of the browser application
 
 ```
-scripts/lib/samples/init_users.cypher
-scripts/lib/samples/init_relationship.cypher
+scripts/lib/samples/init-users.cypher
+scripts/lib/samples/init-relationship.cypher
 ```
