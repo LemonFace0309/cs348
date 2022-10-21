@@ -1,0 +1,105 @@
+﻿[
+  {
+    "p": {
+      "start": {
+        "identity": 2,
+        "labels": [
+          "User"
+        ],
+        "properties": {
+          "createdAt": "2008-12-06T10:10:54.000Z",
+          "followCount": 0,
+          "name": "Taylor Swift",
+          "followerCount": 91323124,
+          "username": "taylorswift13"
+        }
+      },
+      "end": {
+        "identity": 3,
+        "labels": [
+          "User"
+        ],
+        "properties": {
+          "createdAt": "2009-10-02T21:37:33.000Z",
+          "followCount": 986,
+          "name": "Rihanna",
+          "followerCount": 106830324,
+          "username": "rihanna"
+        }
+      },
+      "segments": [
+        {
+          "start": {
+            "identity": 2,
+            "labels": [
+              "User"
+            ],
+            "properties": {
+              "createdAt": "2008-12-06T10:10:54.000Z",
+              "followCount": 0,
+              "name": "Taylor Swift",
+              "followerCount": 91323124,
+              "username": "taylorswift13"
+            }
+          },
+          "relationship": {
+            "identity": 5,
+            "start": 2,
+            "end": 0,
+            "type": "Follows",
+            "properties": {}
+          },
+          "end": {
+            "identity": 0,
+            "labels": [
+              "User"
+            ],
+            "properties": {
+              "createdAt": "2009-02-20T23:45:56.000Z",
+              "followCount": 244,
+              "name": "KATY PERRY",
+              "followerCount": 108901986,
+              "username": "katyperry"
+            }
+          }
+        },
+        {
+          "start": {
+            "identity": 0,
+            "labels": [
+              "User"
+            ],
+            "properties": {
+              "createdAt": "2009-02-20T23:45:56.000Z",
+              "followCount": 244,
+              "name": "KATY PERRY",
+              "followerCount": 108901986,
+              "username": "katyperry"
+            }
+          },
+          "relationship": {
+            "identity": 6,
+            "start": 3,
+            "end": 0,
+            "type": "Follows",
+            "properties": {}
+          },
+          "end": {
+            "identity": 3,
+            "labels": [
+              "User"
+            ],
+            "properties": {
+              "createdAt": "2009-10-02T21:37:33.000Z",
+              "followCount": 986,
+              "name": "Rihanna",
+              "followerCount": 106830324,
+              "username": "rihanna"
+            }
+          }
+        }
+      ],
+      "length": 2.0
+    }
+  }
+]
