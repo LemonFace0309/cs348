@@ -21,7 +21,7 @@ export async function populateDb(driver: Driver) {
 
   try {
     const res = await session.run(
-      "LOAD CSV WITH HEADERS FROM 'file:///users.csv' AS line \
+      "LOAD CSV WITH HEADERS FROM 'file:///production-users.csv' AS line \
       CREATE (:User {username: line.twitter, name: line.name, domain: line.domain});"
     );
   } catch (err) {
