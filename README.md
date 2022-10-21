@@ -34,7 +34,7 @@ yarn dev
 
 2. Run `docker-compose up` to create a local instance of neo4j
 
-3. Run the following to add permissions back to local import scripts that were changed after running `docker-copose`.
+3. Run the following to add permissions back to local import scripts that were changed after running `docker-compose up`.
 
 ```{bash}
 sudo chmod -R a+rwx scripts/lib/import
