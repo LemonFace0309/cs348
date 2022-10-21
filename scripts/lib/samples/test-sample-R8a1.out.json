@@ -1,0 +1,13 @@
+{
+  "identity": 1,
+  "labels": [
+    "User"
+  ],
+  "properties": {
+	"createdAt": "2009-03-28T16:41:22.000Z",
+	"followCount": 282270,
+	"name": "Justin Bieber",
+	"followerCount": 113895387,
+	"username": "justinbieber"
+  }
+}
