@@ -14,6 +14,17 @@ export function readCSV() {
     });
 }
 
+export function outputProgress(number: number, isFinished: boolean, text = '') {
+  const prefix = ': ';
+  const status = text ? number + prefix + text : number;
+
+  if (!isFinished) {
+    console.log(`[${status}] loading...`);
+  } else {
+    console.log(`[${status}] finished`);
+  }
+}
+
 export function sleep(time: number) {
   return new Promise(resolve => setTimeout(resolve, time));
 }

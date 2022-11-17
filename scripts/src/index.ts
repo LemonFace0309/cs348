@@ -13,9 +13,9 @@ const twitterClient = new TwitterApi(process.env.TWITTER_API_BEARER as string);
 const readOnlyClient = twitterClient.readOnly;
 
 async function main() {
-  const driver = await initDb();
-  await populateDb(driver);
-  await getTwitterDataAndUpdateDb(driver);
+  const {driver, session} = await initDb();
+  await populateDb(session);
+  await getTwitterDataAndUpdateDb(session);
   await closeDb(driver);
 }
 
