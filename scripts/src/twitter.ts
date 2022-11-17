@@ -1,7 +1,11 @@
 import * as dotenv from 'dotenv';
-import {Session} from 'neo4j-driver';
+import {Integer, int, Session} from 'neo4j-driver';
 import {chunk} from 'lodash';
-import {TwitterApi} from 'twitter-api-v2';
+import {
+  FollowersV2ParamsWithoutPaginator,
+  TwitterApi,
+  TwitterApiReadOnly,
+} from 'twitter-api-v2';
 
 import {outputProgress, sleep} from './utils';
 
@@ -16,7 +20,15 @@ export async function getTwitterDataAndUpdateDb(session: Session) {
   // Tell typescript it's a readonly app
   const client = twitterClient.readOnly;
 
-  // fetching users
+  await fetchUsers(client, session);
+
+  await fetchTweets(client, session);
+
+  await fetchFollowing(client, session);
+}
+
+async function fetchUsers(client: TwitterApiReadOnly, session: Session) {
+  console.log('Fetching users:');
   try {
     const res = await session.run('MATCH (u:User) RETURN u;');
 
@@ -56,11 +68,15 @@ export async function getTwitterDataAndUpdateDb(session: Session) {
           RETURN u',
           {
             usernameParam: user.username,
-            twitterIdParam: +user.id,
+            twitterIdParam: int(+user.id),
             name: user.name,
-            followersCountParam: +(user.public_metrics?.followers_count ?? 0),
-            followingCountParam: +(user.public_metrics?.following_count ?? 0),
-            tweetCountParam: +(user.public_metrics?.tweet_count ?? 0),
+            followersCountParam: int(
+              +(user.public_metrics?.followers_count ?? 0)
+            ),
+            followingCountParam: int(
+              +(user.public_metrics?.following_count ?? 0)
+            ),
+            tweetCountParam: int(+(user.public_metrics?.tweet_count ?? 0)),
             createdAtParam: new Date(user.created_at ?? '0001').getTime(), // stores as ms, RETURN date({ epochMillis: $startsAt }) to convert to Date in cypher
           }
         );
@@ -75,13 +91,15 @@ export async function getTwitterDataAndUpdateDb(session: Session) {
   } catch (err) {
     console.log('Unabled to get all users:', err);
   }
+}
 
-  // fetching tweets
+async function fetchTweets(client: TwitterApiReadOnly, session: Session) {
+  console.log('Fetching tweets:');
   let curName = '';
   try {
     const res = await session.run('MATCH (u:User) RETURN u;');
 
-    const accounts: {name: string; twitter_id: string | undefined}[] =
+    const accounts: {name: string; twitter_id: Integer | undefined}[] =
       res.records.map(record => ({
         name: record.get('u').properties.name,
         twitter_id: record.get('u').properties.twitter_id,
@@ -110,21 +128,87 @@ export async function getTwitterDataAndUpdateDb(session: Session) {
             MATCH (u:User {twitter_id: $twitterIdParam}) \
             CREATE (u)-[r:Author]->(t);',
             {
-              tweetIdParam: +tweet.id,
+              tweetIdParam: int(+tweet.id),
               textParam: tweet.text,
-              twitterIdParam: +tweet.author_id,
+              twitterIdParam: int(+tweet.author_id),
               createdAtParam: new Date(tweet.created_at ?? '0001').getTime(),
             }
           );
         }
         count++;
-        if (count === 2) break;
+        if (count === 3) break;
       }
 
       outputProgress(i + 1, i === accounts.length - 1, curName);
-      if (i !== accounts.length - 1) await sleep(3100); // 3.1 seconds
+      if (i !== accounts.length - 1) await sleep(2100); // 2.1 seconds
     }
   } catch (err) {
     console.log(`Failed to get tweets for ${curName}:`, err);
+  }
+}
+
+async function fetchFollowing(client: TwitterApiReadOnly, session: Session) {
+  console.log('Fetching follows:');
+  let curName = '';
+  try {
+    const res = await session.run('MATCH (u:User) RETURN u;');
+
+    const accounts: {name: string; twitter_id: Integer | undefined}[] =
+      res.records.map(record => ({
+        name: record.get('u').properties.name,
+        twitter_id: record.get('u').properties.twitter_id,
+      }));
+
+    // calling api
+    for (const [i, account] of accounts.entries()) {
+      if (!account.twitter_id) break;
+      // eslint-disable-next-line no-constant-condition
+      curName = account.name;
+
+      let paginationToken: string | undefined = '';
+      let followingTwitterIds: string[] = [];
+      let paginationCount = 1;
+      while (typeof paginationToken !== 'undefined' || paginationCount === 3) {
+        const params: Partial<FollowersV2ParamsWithoutPaginator> = {
+          'user.fields': ['id', 'username'],
+          max_results: 1000,
+        };
+        if (paginationToken) params.pagination_token = paginationToken;
+
+        const following = await client.v2.following(
+          account.twitter_id.toString(),
+          params
+        );
+
+        paginationToken = following.meta.next_token;
+        followingTwitterIds = followingTwitterIds.concat(
+          following.data.map(user => user.id)
+        );
+        paginationCount++;
+        await sleep(60010); // 1 minute
+      }
+
+      // adding follows relation to db
+      const res = await session.run(
+        'MATCH (u2:User) \
+        WHERE u2.twitter_id in $followingTwitterIdsParam \
+        MATCH (u1:User {twitter_id: $twitterIdParam}) \
+        WITH u1, u2 \
+        CREATE (u1)-[r:Follows]->(u2);',
+        {
+          twitterIdParam: account.twitter_id,
+          followingTwitterIdsParam: followingTwitterIds.map(id => int(+id)),
+        }
+      );
+
+      outputProgress(
+        i + 1,
+        i === accounts.length - 1,
+        `${curName} follows ${followingTwitterIds.length} users`
+      );
+      break;
+    }
+  } catch (err) {
+    console.log(`Failed to get follows for ${curName}:`, err);
   }
 }
