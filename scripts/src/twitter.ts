@@ -64,7 +64,7 @@ async function fetchUsers(client: TwitterApiReadOnly, session: Session) {
       for (const user of users) {
         const res = await session.run(
           'MATCH (u:User {username: $usernameParam}) \
-          SET u += { twitter_id: $twitterIdParam, name: $name, followers_count: $followersCountParam, following_count: $followingCountParam, tweet_count: $tweetCountParam, created_at: $createdAtParam} \
+          SET u += { twitterId: $twitterIdParam, name: $name, followersCount: $followersCountParam, followingCount: $followingCountParam, tweetCount: $tweetCountParam, createdAt: $createdAtParam} \
           RETURN u',
           {
             usernameParam: user.username,
@@ -99,19 +99,19 @@ async function fetchTweets(client: TwitterApiReadOnly, session: Session) {
   try {
     const res = await session.run('MATCH (u:User) RETURN u;');
 
-    const accounts: {name: string; twitter_id: Integer | undefined}[] =
+    const accounts: {name: string; twitterId: Integer | undefined}[] =
       res.records.map(record => ({
         name: record.get('u').properties.name,
-        twitter_id: record.get('u').properties.twitter_id,
+        twitterId: record.get('u').properties.twitterId,
       }));
 
     // calling api
     for (const [i, account] of accounts.entries()) {
-      if (!account.twitter_id) break;
+      if (!account.twitterId) break;
       curName = account.name;
 
       const timeline = await client.v2.userTimeline(
-        account.twitter_id.toString(),
+        account.twitterId.toString(),
         {
           'tweet.fields': ['author_id', 'created_at', 'id', 'text'],
           'media.fields': ['alt_text'],
@@ -121,11 +121,11 @@ async function fetchTweets(client: TwitterApiReadOnly, session: Session) {
       // adding most recent 3 tweets to db
       let count = 0;
       for await (const tweet of timeline) {
-        if (tweet.author_id === account.twitter_id.toString()) {
+        if (tweet.author_id === account.twitterId.toString()) {
           const res = await session.run(
-            'CREATE (t:Tweet {tweet_id: $tweetIdParam, text: $textParam, createdAt: $createdAtParam}) \
+            'CREATE (t:Tweet {tweetId: $tweetIdParam, text: $textParam, createdAt: $createdAtParam}) \
             WITH t \
-            MATCH (u:User {twitter_id: $twitterIdParam}) \
+            MATCH (u:User {twitterId: $twitterIdParam}) \
             CREATE (u)-[r:Author]->(t);',
             {
               tweetIdParam: int(+tweet.id),
@@ -153,15 +153,15 @@ async function fetchFollowing(client: TwitterApiReadOnly, session: Session) {
   try {
     const res = await session.run('MATCH (u:User) RETURN u;');
 
-    const accounts: {name: string; twitter_id: Integer | undefined}[] =
+    const accounts: {name: string; twitterId: Integer | undefined}[] =
       res.records.map(record => ({
         name: record.get('u').properties.name,
-        twitter_id: record.get('u').properties.twitter_id,
+        twitterId: record.get('u').properties.twitterId,
       }));
 
     // calling api
     for (const [i, account] of accounts.entries()) {
-      if (!account.twitter_id) break;
+      if (!account.twitterId) break;
       // eslint-disable-next-line no-constant-condition
       curName = account.name;
 
@@ -176,7 +176,7 @@ async function fetchFollowing(client: TwitterApiReadOnly, session: Session) {
         if (paginationToken) params.pagination_token = paginationToken;
 
         const following = await client.v2.following(
-          account.twitter_id.toString(),
+          account.twitterId.toString(),
           params
         );
 
@@ -191,12 +191,12 @@ async function fetchFollowing(client: TwitterApiReadOnly, session: Session) {
       // adding follows relation to db
       const res = await session.run(
         'MATCH (u2:User) \
-        WHERE u2.twitter_id in $followingTwitterIdsParam \
-        MATCH (u1:User {twitter_id: $twitterIdParam}) \
+        WHERE u2.twitterId in $followingTwitterIdsParam \
+        MATCH (u1:User {twitterId: $twitterIdParam}) \
         WITH u1, u2 \
         CREATE (u1)-[r:Follows]->(u2);',
         {
-          twitterIdParam: account.twitter_id,
+          twitterIdParam: account.twitterId,
           followingTwitterIdsParam: followingTwitterIds.map(id => int(+id)),
         }
       );
@@ -206,7 +206,6 @@ async function fetchFollowing(client: TwitterApiReadOnly, session: Session) {
         i === accounts.length - 1,
         `${curName} follows ${followingTwitterIds.length} users`
       );
-      break;
     }
   } catch (err) {
     console.log(`Failed to get follows for ${curName}:`, err);

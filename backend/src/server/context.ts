@@ -1,20 +1,31 @@
 // import { ApolloClient, InMemoryCache } from "@apollo/client";
 // import { SchemaLink } from "@apollo/client/link/schema";
+import * as dotenv from 'dotenv';
 import { NextFunction, Request, Response } from "express";
+import neo4j, { Driver, Session } from "neo4j-driver";
 
 // import { schema } from "@src/server/schema";
 
 import "dotenv/config";
 
 export type ContextParams = {
-  // prisma: PrismaClient;
-  neo4j: string;
+  neo4j: Session;
 };
 
 export const initContext = () => {
-  // const prisma = new PrismaClient();
+  const driver = neo4j.driver(
+    process.env.NEO4J_URI as string,
+    neo4j.auth.basic(
+      process.env.NEO4J_USERNAME as string,
+      process.env.NEO4J_PASSWORD as string
+    )
+  );
+  const session = driver.session({
+    database: process.env.NEO4J_DB as string,
+    defaultAccessMode: neo4j.session.READ,
+  });
 
-  return new Context({ neo4j: "placeholder" });
+  return new Context({ neo4j: session });
 };
 
 export const attachContext = (context: Context) => {
@@ -25,12 +36,10 @@ export const attachContext = (context: Context) => {
 };
 
 export class Context {
-  // prisma: PrismaClient;
-  neo4j: string;
+  neo4j: Session;
   // private _apollo: ApolloClient<unknown> | null;
 
   constructor(params: ContextParams) {
-    // this.prisma = params.prisma;
     this.neo4j = params.neo4j;
     // this._apollo = null;
   }

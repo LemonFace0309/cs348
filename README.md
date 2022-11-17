@@ -48,4 +48,4 @@ yarn
 yarn dev
 ```
 
-3. Open `http://localhost:8000` in your browser
+3. Open `http://localhost:8000/graphql` in your browser

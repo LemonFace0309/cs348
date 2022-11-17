@@ -18,7 +18,8 @@
     "apollo-server-express": "^3.6.4",
     "cors": "^2.8.5",
     "express": "^4.17.3",
-    "graphql": "^16.6.0"
+    "graphql": "^16.6.0",
+    "neo4j-driver": "^5.2.0"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "2.6.2",
