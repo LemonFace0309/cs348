@@ -3,6 +3,12 @@ type Query {
   users(usernames: [String!]!): [User!]!
   tweets(username: String!): [Tweet!]!
   following(username: String!): [User!]!
+  shortestPath(input: ShortestPathInput!): [User!]!
+}
+
+input ShortestPathInput {
+  startUsername: String!
+  endUsername: String!
 }
 
 type User {
