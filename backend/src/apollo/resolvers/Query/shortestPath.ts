@@ -27,7 +27,6 @@ export const shortestPath = async (
   if (!res.records.length) return [];
   const path = res.records[0].get("p").segments.map((segment: any) => {
     const u: User = segment.start.properties;
-    console.log(u);
     return {
       name: u.name,
       tweetCount: u.tweetCount ? u.tweetCount.toInt() : undefined,
