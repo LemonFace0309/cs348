@@ -19,7 +19,7 @@ export function outputProgress(number: number, isFinished: boolean, text = '') {
   const status = text ? number + prefix + text : number;
 
   if (!isFinished) {
-    console.log(`[${status}] loading...`);
+    console.log(`[${status}] done. Loading next...`);
   } else {
     console.log(`[${status}] finished`);
   }

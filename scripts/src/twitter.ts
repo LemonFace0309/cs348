@@ -107,7 +107,7 @@ async function fetchTweets(client: TwitterApiReadOnly, session: Session) {
 
     // calling api
     for (const [i, account] of accounts.entries()) {
-      if (!account.twitterId) break;
+      if (!account.twitterId) continue;
       curName = account.name;
 
       const timeline = await client.v2.userTimeline(
@@ -161,14 +161,14 @@ async function fetchFollowing(client: TwitterApiReadOnly, session: Session) {
 
     // calling api
     for (const [i, account] of accounts.entries()) {
-      if (!account.twitterId) break;
+      if (!account.twitterId) continue;
       // eslint-disable-next-line no-constant-condition
       curName = account.name;
 
       let paginationToken: string | undefined = '';
       let followingTwitterIds: string[] = [];
       let paginationCount = 1;
-      while (typeof paginationToken !== 'undefined' || paginationCount === 3) {
+      while (typeof paginationToken !== 'undefined' && paginationCount <= 3) {
         const params: Partial<FollowersV2ParamsWithoutPaginator> = {
           'user.fields': ['id', 'username'],
           max_results: 1000,
@@ -179,6 +179,7 @@ async function fetchFollowing(client: TwitterApiReadOnly, session: Session) {
           account.twitterId.toString(),
           params
         );
+        if (!following.data) break;
 
         paginationToken = following.meta.next_token;
         followingTwitterIds = followingTwitterIds.concat(
