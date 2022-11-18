@@ -17,14 +17,14 @@ export const shortestPath = async (
 
   const res = await neo4j.run(
     "MATCH (A:User {username: $startUsernameParam}), (B:User {username: $endUsernameParam}), \
-    p = shortestPath((A)-[*]-(B)) \
+    p = shortestPath((A)-[r:Follows*]->(B)) \
     RETURN B, p;",
     {
       startUsernameParam: args.input.startUsername,
       endUsernameParam: args.input.endUsername,
     }
   );
-  if (!res.records) return [];
+  if (!res.records.length) return [];
   const path = res.records[0].get("p").segments.map((segment: any) => {
     const u: User = segment.start.properties;
     console.log(u);
