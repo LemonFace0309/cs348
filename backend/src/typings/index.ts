@@ -9,3 +9,9 @@ export interface User {
   followingCount?: Integer;
   tweetCount?: Integer;
 }
+
+export interface Tweet {
+  tweetId: Integer;
+  text: string;
+  createdAt: number;
+}

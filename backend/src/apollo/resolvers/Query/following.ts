@@ -1,28 +1,24 @@
 import type { Context } from "@src/server/context";
 import type { User } from "@src/typings";
 
-interface QueryUsersArgs {
-  usernames: string[];
+interface QueryFollowingArgs {
+  username: string;
 }
 
-export const users = async (
+export const following = async (
   _root: unknown,
-  args: QueryUsersArgs,
+  args: QueryFollowingArgs,
   ctx: Context
 ) => {
   const { neo4j } = ctx;
-  const query = args.usernames.length
-    ? "MATCH (u:User) \
-    WHERE u.username IN $usernamesParam \
-    RETURN u;"
-    : "MATCH (u:User) \
-    RETURN u;";
 
-  const res = await neo4j.run(query, {
-    usernamesParam: args.usernames,
+  const res = await neo4j.run(
+    "MATCH (u1:User {username: $usernameParam})-[r:Follows]->(u2:User) \
+    RETURN u2;", {
+    usernameParam: args.username,
   });
   const users = res.records.map((record) => {
-    const u: User = record.get("u").properties;
+    const u: User = record.get("u2").properties;
     return {
       name: u.name,
       tweetCount: u.tweetCount ? u.tweetCount.toInt() : undefined,

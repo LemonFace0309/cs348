@@ -1,6 +1,8 @@
 type Query {
   user(username: String!): User
-  users(usernames: [String!]!): [User]!
+  users(usernames: [String!]!): [User!]!
+  tweets(username: String!): [Tweet!]!
+  following(username: String!): [User!]!
 }
 
 type User {
@@ -10,4 +12,10 @@ type User {
   followersCount: Int
   followingCount: Int
   tweetCount: Int
+}
+
+type Tweet {
+  tweetId: String!
+  text: String!
+  createdAt: String!
 }
