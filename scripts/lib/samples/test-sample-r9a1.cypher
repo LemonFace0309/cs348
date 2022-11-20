@@ -1,2 +1,2 @@
-MATCH tweets=(:User {username: "taylorswift13"})-[rel:Author]-(:Tweet)
+MATCH tweets=(:User {username: "katyperry"})-[rel:Author]-(:Tweet)
 RETURN tweets

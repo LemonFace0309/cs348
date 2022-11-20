@@ -1,2 +1,2 @@
-MATCH relationships=(:User {username: "taylorswift13"})-[:Follows]-(:User)
+MATCH relationships=(:User {username: "rihanna"})-[:Follows]-(:User)
 RETURN relationships AS Relationships

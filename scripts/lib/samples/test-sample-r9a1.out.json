@@ -1,138 +1,66 @@
 [
 	{
-		"tweets": {
+	  "tweets": {
+  "start": {
+  "identity": 0,
+  "labels": [
+			"User"
+		  ],
+  "properties": {
+  "createdAt": "2009-02-20T23:45:56.000Z",
+  "followCount": 244,
+  "name": "KATY PERRY",
+  "followerCount": 108901986,
+  "username": "katyperry"
+		  }
+		},
+  "end": {
+  "identity": 10,
+  "labels": [
+			"Tweet"
+		  ],
+  "properties": {
+  "createdAt": 2014,
+  "text": "spy with my little eye… the Laterr boot at work"
+		  }
+		},
+  "segments": [
+		  {
 			"start": {
-				"identity": 2,
-				"labels": [
-					"User"
-				],
-				"properties": {
-					"createdAt": 2008,
-					"followCount": 0,
-					"domain": "grmypro.co",
-					"tweetCount": 743,
-					"name": "Taylor Swift",
-					"isAdmin": false,
-					"followerCount": 91323124,
-					"username": "taylorswift13"
-				}
+  "identity": 0,
+  "labels": [
+				"User"
+			  ],
+  "properties": {
+  "createdAt": "2009-02-20T23:45:56.000Z",
+  "followCount": 244,
+  "name": "KATY PERRY",
+  "followerCount": 108901986,
+  "username": "katyperry"
+			  }
+			},
+			"relationship": {
+  "identity": 12,
+  "start": 0,
+  "end": 10,
+  "type": "Author",
+  "properties": {
+  
+			  }
 			},
 			"end": {
-				"identity": 19,
-				"labels": [
-					"Tweet"
-				],
-				"properties": {
-					"createdAt": 2015,
-					"text": "Boys are really cool."
-				}
-			},
-			"segments": [
-				{
-					"start": {
-						"identity": 2,
-						"labels": [
-							"User"
-						],
-						"properties": {
-							"createdAt": 2008,
-							"followCount": 0,
-							"domain": "grmypro.co",
-							"tweetCount": 743,
-							"name": "Taylor Swift",
-							"isAdmin": false,
-							"followerCount": 91323124,
-							"username": "taylorswift13"
-						}
-					},
-					"relationship": {
-						"identity": 22,
-						"start": 2,
-						"end": 19,
-						"type": "Author",
-						"properties": {}
-					},
-					"end": {
-						"identity": 19,
-						"labels": [
-							"Tweet"
-						],
-						"properties": {
-							"createdAt": 2015,
-							"text": "Boys are really cool."
-						}
-					}
-				}
-			],
-			"length": 1.0
-		}
-	},
-	{
-		"tweets": {
-			"start": {
-				"identity": 2,
-				"labels": [
-					"User"
-				],
-				"properties": {
-					"createdAt": 2008,
-					"followCount": 0,
-					"domain": "grmypro.co",
-					"tweetCount": 743,
-					"name": "Taylor Swift",
-					"isAdmin": false,
-					"followerCount": 91323124,
-					"username": "taylorswift13"
-				}
-			},
-			"end": {
-				"identity": 18,
-				"labels": [
-					"Tweet"
-				],
-				"properties": {
-					"createdAt": 2010,
-					"text": "My music is so good"
-				}
-			},
-			"segments": [
-				{
-					"start": {
-						"identity": 2,
-						"labels": [
-							"User"
-						],
-						"properties": {
-							"createdAt": 2008,
-							"followCount": 0,
-							"domain": "grmypro.co",
-							"tweetCount": 743,
-							"name": "Taylor Swift",
-							"isAdmin": false,
-							"followerCount": 91323124,
-							"username": "taylorswift13"
-						}
-					},
-					"relationship": {
-						"identity": 21,
-						"start": 2,
-						"end": 18,
-						"type": "Author",
-						"properties": {}
-					},
-					"end": {
-						"identity": 18,
-						"labels": [
-							"Tweet"
-						],
-						"properties": {
-							"createdAt": 2010,
-							"text": "My music is so good"
-						}
-					}
-				}
-			],
-			"length": 1.0
-		}
+  "identity": 10,
+  "labels": [
+				"Tweet"
+			  ],
+  "properties": {
+  "createdAt": 2014,
+  "text": "spy with my little eye… the Laterr boot at work"
+			  }
+			}
+		  }
+		],
+  "length": 1.0
+	  }
 	}
-]
+  ]
