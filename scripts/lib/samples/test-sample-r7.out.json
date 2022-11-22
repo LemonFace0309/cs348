@@ -1,274 +1,142 @@
 ﻿[
   {
     "Relationships": {
-      "start": {
-        "identity": 2,
-        "labels": [
+"start": {
+"identity": 3,
+"labels": [
           "User"
         ],
-        "properties": {
-          "createdAt": "2008-12-06T10:10:54.000Z",
-          "followCount": 0,
-          "name": "Taylor Swift",
-          "followerCount": 91323124,
-          "username": "taylorswift13"
+"properties": {
+"createdAt": "2009-10-02T21:37:33.000Z",
+"followCount": 986,
+"name": "Rihanna",
+"followerCount": 106830324,
+"username": "rihanna"
         }
       },
-      "end": {
-        "identity": 0,
-        "labels": [
+"end": {
+"identity": 0,
+"labels": [
           "User"
         ],
-        "properties": {
-          "createdAt": "2009-02-20T23:45:56.000Z",
-          "followCount": 244,
-          "name": "KATY PERRY",
-          "followerCount": 108901986,
-          "username": "katyperry"
+"properties": {
+"createdAt": "2009-02-20T23:45:56.000Z",
+"followCount": 244,
+"name": "KATY PERRY",
+"followerCount": 108901986,
+"username": "katyperry"
         }
       },
-      "segments": [
+"segments": [
         {
           "start": {
-            "identity": 2,
-            "labels": [
+"identity": 3,
+"labels": [
               "User"
             ],
-            "properties": {
-              "createdAt": "2008-12-06T10:10:54.000Z",
-              "followCount": 0,
-              "name": "Taylor Swift",
-              "followerCount": 91323124,
-              "username": "taylorswift13"
+"properties": {
+"createdAt": "2009-10-02T21:37:33.000Z",
+"followCount": 986,
+"name": "Rihanna",
+"followerCount": 106830324,
+"username": "rihanna"
             }
           },
           "relationship": {
-            "identity": 5,
-            "start": 2,
-            "end": 0,
-            "type": "Follows",
-            "properties": {}
+"identity": 6,
+"start": 3,
+"end": 0,
+"type": "Follows",
+"properties": {
+
+            }
           },
           "end": {
-            "identity": 0,
-            "labels": [
+"identity": 0,
+"labels": [
               "User"
             ],
-            "properties": {
-              "createdAt": "2009-02-20T23:45:56.000Z",
-              "followCount": 244,
-              "name": "KATY PERRY",
-              "followerCount": 108901986,
-              "username": "katyperry"
+"properties": {
+"createdAt": "2009-02-20T23:45:56.000Z",
+"followCount": 244,
+"name": "KATY PERRY",
+"followerCount": 108901986,
+"username": "katyperry"
             }
           }
         }
       ],
-      "length": 1.0
+"length": 1.0
     }
   },
   {
     "Relationships": {
-      "start": {
-        "identity": 2,
-        "labels": [
+"start": {
+"identity": 3,
+"labels": [
           "User"
         ],
-        "properties": {
-          "createdAt": "2008-12-06T10:10:54.000Z",
-          "followCount": 0,
-          "name": "Taylor Swift",
-          "followerCount": 91323124,
-          "username": "taylorswift13"
+"properties": {
+"createdAt": "2009-10-02T21:37:33.000Z",
+"followCount": 986,
+"name": "Rihanna",
+"followerCount": 106830324,
+"username": "rihanna"
         }
       },
-      "end": {
-        "identity": 5,
-        "labels": [
+"end": {
+"identity": 1,
+"labels": [
           "User"
         ],
-        "properties": {
-          "createdAt": "2009-03-25T19:10:50.000Z",
-          "followCount": 338,
-          "name": "Justin Timberlake",
-          "followerCount": 62929435,
-          "username": "jtimberlake"
+"properties": {
+"createdAt": "2009-03-28T16:41:22.000Z",
+"followCount": 282270,
+"name": "Justin Bieber",
+"followerCount": 113895387,
+"username": "justinbieber"
         }
       },
-      "segments": [
+"segments": [
         {
           "start": {
-            "identity": 2,
-            "labels": [
+"identity": 3,
+"labels": [
               "User"
             ],
-            "properties": {
-              "createdAt": "2008-12-06T10:10:54.000Z",
-              "followCount": 0,
-              "name": "Taylor Swift",
-              "followerCount": 91323124,
-              "username": "taylorswift13"
+"properties": {
+"createdAt": "2009-10-02T21:37:33.000Z",
+"followCount": 986,
+"name": "Rihanna",
+"followerCount": 106830324,
+"username": "rihanna"
             }
           },
           "relationship": {
-            "identity": 4,
-            "start": 2,
-            "end": 5,
-            "type": "Follows",
-            "properties": {}
+"identity": 1,
+"start": 1,
+"end": 3,
+"type": "Follows",
+"properties": {
+
+            }
           },
           "end": {
-            "identity": 5,
-            "labels": [
+"identity": 1,
+"labels": [
               "User"
             ],
-            "properties": {
-              "createdAt": "2009-03-25T19:10:50.000Z",
-              "followCount": 338,
-              "name": "Justin Timberlake",
-              "followerCount": 62929435,
-              "username": "jtimberlake"
+"properties": {
+"createdAt": "2009-03-28T16:41:22.000Z",
+"followCount": 282270,
+"name": "Justin Bieber",
+"followerCount": 113895387,
+"username": "justinbieber"
             }
           }
         }
       ],
-      "length": 1.0
-    }
-  },
-  {
-    "Relationships": {
-      "start": {
-        "identity": 2,
-        "labels": [
-          "User"
-        ],
-        "properties": {
-          "createdAt": "2008-12-06T10:10:54.000Z",
-          "followCount": 0,
-          "name": "Taylor Swift",
-          "followerCount": 91323124,
-          "username": "taylorswift13"
-        }
-      },
-      "end": {
-        "identity": 4,
-        "labels": [
-          "User"
-        ],
-        "properties": {
-          "createdAt": "2008-03-26T22:37:48.000Z",
-          "followCount": 117388,
-          "name": "Lady Gaga",
-          "followerCount": 84959959,
-          "username": "ladygaga"
-        }
-      },
-      "segments": [
-        {
-          "start": {
-            "identity": 2,
-            "labels": [
-              "User"
-            ],
-            "properties": {
-              "createdAt": "2008-12-06T10:10:54.000Z",
-              "followCount": 0,
-              "name": "Taylor Swift",
-              "followerCount": 91323124,
-              "username": "taylorswift13"
-            }
-          },
-          "relationship": {
-            "identity": 3,
-            "start": 2,
-            "end": 4,
-            "type": "Follows",
-            "properties": {}
-          },
-          "end": {
-            "identity": 4,
-            "labels": [
-              "User"
-            ],
-            "properties": {
-              "createdAt": "2008-03-26T22:37:48.000Z",
-              "followCount": 117388,
-              "name": "Lady Gaga",
-              "followerCount": 84959959,
-              "username": "ladygaga"
-            }
-          }
-        }
-      ],
-      "length": 1.0
-    }
-  },
-  {
-    "Relationships": {
-      "start": {
-        "identity": 2,
-        "labels": [
-          "User"
-        ],
-        "properties": {
-          "createdAt": "2008-12-06T10:10:54.000Z",
-          "followCount": 0,
-          "name": "Taylor Swift",
-          "followerCount": 91323124,
-          "username": "taylorswift13"
-        }
-      },
-      "end": {
-        "identity": 1,
-        "labels": [
-          "User"
-        ],
-        "properties": {
-          "createdAt": "2009-03-28T16:41:22.000Z",
-          "followCount": 282270,
-          "name": "Justin Bieber",
-          "followerCount": 113895387,
-          "username": "justinbieber"
-        }
-      },
-      "segments": [
-        {
-          "start": {
-            "identity": 2,
-            "labels": [
-              "User"
-            ],
-            "properties": {
-              "createdAt": "2008-12-06T10:10:54.000Z",
-              "followCount": 0,
-              "name": "Taylor Swift",
-              "followerCount": 91323124,
-              "username": "taylorswift13"
-            }
-          },
-          "relationship": {
-            "identity": 0,
-            "start": 1,
-            "end": 2,
-            "type": "Follows",
-            "properties": {}
-          },
-          "end": {
-            "identity": 1,
-            "labels": [
-              "User"
-            ],
-            "properties": {
-              "createdAt": "2009-03-28T16:41:22.000Z",
-              "followCount": 282270,
-              "name": "Justin Bieber",
-              "followerCount": 113895387,
-              "username": "justinbieber"
-            }
-          }
-        }
-      ],
-      "length": 1.0
+"length": 1.0
     }
   }
 ]

@@ -1,0 +1,16 @@
+[
+    {
+      "n": {
+  "identity": 25,
+  "labels": [
+          "User"
+        ],
+  "properties": {
+  "followCount": 1000000000,
+  "domain": "alexzhang.123",
+  "name": "Alex Zhang",
+  "username": "alexzhang"
+        }
+      }
+    }
+  ]
