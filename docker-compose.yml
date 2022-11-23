@@ -10,5 +10,6 @@ services:
       - ./scripts/lib/import:/var/lib/neo4j/import
     environment:
       - NEO4J_AUTH=neo4j/development
+      - NEO4JLABS_PLUGINS=["graph-data-science"]
 volumes:
   neo4j_data:
