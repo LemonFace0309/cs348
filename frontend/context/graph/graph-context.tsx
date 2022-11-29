@@ -1,4 +1,4 @@
-import { createContext, FC, ReactNode, useContext } from "react";
+import { createContext, FC, ReactNode, useContext, useState } from "react";
 
 import { ContextProps } from "./types";
 
@@ -7,14 +7,18 @@ export const useGraphContext = () => {
 };
 
 export const GraphContext = createContext<ContextProps>({
-  username1: "",
+  username: "",
+  setUsername: () => null,
 });
 
 export const GraphProvider: FC<{
   children: ReactNode;
 }> = ({ children }) => {
+  const [username, setUsername] = useState("");
+
   const value = {
-    username1: "",
+    username,
+    setUsername,
   };
 
   return (

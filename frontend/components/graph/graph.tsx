@@ -5,7 +5,7 @@ import { NeovisConfig } from "neovis.js/dist/neovis.js";
 import { useGraphContext } from "@src/context/graph";
 
 export const Graph: FC = () => {
-  const { username1 } = useGraphContext();
+  const { username } = useGraphContext();
   const graphRef = useRef() as MutableRefObject<HTMLDivElement>;
 
   useEffect(() => {
@@ -24,6 +24,11 @@ export const Graph: FC = () => {
         visConfig: {
           nodes: {
             shape: "dot",
+          },
+          edges: {
+            arrows: {
+              to: { enabled: true },
+            },
           },
         },
         labels: {
@@ -50,20 +55,23 @@ export const Graph: FC = () => {
             // value: "weight",
           },
         },
-        consoleDebug: true,
+        // consoleDebug: true,
         initialCypher: "MATCH n=(:User)-[:Follows]->() RETURN n",
-        // initialCypher:
-        //   "MATCH (n:User)-[r:Follows]->(m) WHERE m.pagerank > 0.5 RETURN m, r",
       };
+
+      if (username) {
+        config.initialCypher = `
+          MATCH n=(User {username: "ladygaga"})-[:Follows]-(:User)
+          RETURN n
+        `;
+      }
 
       const vis = new NeoVis(config);
       vis.render();
     };
 
     initGraph();
-  }, []);
+  }, [username]);
 
-  return (
-    <div id="graph" ref={graphRef} className="w-screen h-screen bg-slate-100" />
-  );
+  return <div id="graph" ref={graphRef} className="h-full grow" />;
 };

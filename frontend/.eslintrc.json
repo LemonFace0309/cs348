@@ -13,7 +13,7 @@
   "extends": [
     "eslint:recommended",
     "plugin:react-hooks/recommended",
-    "plugin:tailwind/recommended",
+    "plugin:tailwindcss/recommended",
     "plugin:import/typescript",
     "next/core-web-vitals"
   ],

@@ -1,3 +1,6 @@
+import { Dispatch, SetStateAction } from "react";
+
 export type ContextProps = {
-  username1: string;
+  username: string;
+  setUsername: Dispatch<SetStateAction<string>>;
 };

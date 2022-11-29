@@ -22,8 +22,8 @@ export async function initDb() {
 export async function populateDb(session: Session) {
   try {
     const res = await session.run(
-      "LOAD CSV WITH HEADERS FROM 'file:///production-users-small.csv' AS line \
-      CREATE (:User {username: line.twitter, name: line.name});"
+      "LOAD CSV WITH HEADERS FROM 'file:///production-users-medium.csv' AS line \
+      CREATE (:User {username: line.twitter, name: line.name, community: line.community});"
     );
   } catch (err) {
     console.log(err);
