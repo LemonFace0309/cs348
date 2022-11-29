@@ -5,7 +5,7 @@ import { NeovisConfig } from "neovis.js/dist/neovis.js";
 import { useGraphContext } from "@src/context/graph";
 
 export const Graph: FC = () => {
-  const { username } = useGraphContext();
+  const { username, mode } = useGraphContext();
   const graphRef = useRef() as MutableRefObject<HTMLDivElement>;
 
   useEffect(() => {
@@ -60,10 +60,26 @@ export const Graph: FC = () => {
       };
 
       if (username) {
-        config.initialCypher = `
-          MATCH n=(User {username: "ladygaga"})-[:Follows]-(:User)
-          RETURN n
-        `;
+        switch (mode) {
+          case "tweets":
+            config.initialCypher = `
+              MATCH n=(User {username: "${username}"})-[:Author]->()
+              RETURN n
+            `;
+            break;
+          case "shortest path":
+            config.initialCypher = `
+              MATCH n=(User {username: "${username}"})-[:Follows]-()
+              RETURN n
+            `;
+            break;
+          default:
+            config.initialCypher = `
+              MATCH n=(User {username: "${username}"})-[:Follows]-()
+              RETURN n
+            `;
+            break;
+        }
       }
 
       const vis = new NeoVis(config);
@@ -71,7 +87,7 @@ export const Graph: FC = () => {
     };
 
     initGraph();
-  }, [username]);
+  }, [username, mode]);
 
   return <div id="graph" ref={graphRef} className="h-full grow" />;
 };
