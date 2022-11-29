@@ -21,7 +21,7 @@ export const tweets = async (
   const tweets = res.records.map((record) => {
     const u: Tweet = record.get("t").properties;
     return {
-      tweetId: u.tweetId.toInt(),
+      tweetId: u.tweetId.toNumber(),
       text: u.text,
       createdAt: new Date(u.createdAt).toString(),
     };

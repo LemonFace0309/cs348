@@ -6,3 +6,9 @@ export type User = {
   followingCount: number;
   tweetCount: number;
 };
+
+export type Tweet = {
+  tweetId: string;
+  text: string;
+  createdAt: string;
+};

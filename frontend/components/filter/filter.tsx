@@ -1,26 +1,12 @@
 import { FC } from "react";
 
-import { gql, useQuery } from "@apollo/client";
-
 import { Button } from "@src/components/button";
 import type { Option } from "@src/components/radio-group";
 import { RadioGroup } from "@src/components/radio-group";
+import { SecondaryInfoPanel } from "@src/components/secondary-info-panel";
+import { UserList } from "@src/components/user-list";
 import { useGraphContext } from "@src/context/graph";
 import { Mode } from "@src/context/graph/types";
-import { User } from "@src/lib/types";
-
-const GET_USERS = gql`
-  query GetUsers($usernames: [String!]!) {
-    users(usernames: $usernames) {
-      createdAt
-      followersCount
-      followingCount
-      name
-      tweetCount
-      username
-    }
-  }
-`;
 
 const options: Option[] = [
   {
@@ -38,10 +24,8 @@ const options: Option[] = [
 ];
 
 export const Filter: FC = () => {
-  const { username, setUsername, setMode } = useGraphContext();
-  const { loading, error, data } = useQuery(GET_USERS, {
-    variables: { usernames: [] },
-  });
+  const { username, setUsername, setMode, setDestinationUser } =
+    useGraphContext();
 
   const nodeOptionHandler = (option: Option) => {
     console.log(option.text.toLowerCase());
@@ -50,32 +34,31 @@ export const Filter: FC = () => {
 
   const clearHandler = () => {
     setUsername("");
+    setDestinationUser("");
     setMode(null);
   };
 
   return (
     <div className="flex w-48 flex-col items-center space-y-5 p-4 text-center 2xl:w-96">
       <h1 className="text-4xl">Filter</h1>
-      <div className="max-h-80 w-full overflow-auto">
-        {!loading &&
-          !username &&
-          data.users.map((user: User) => {
-            return (
-              <a
-                key={user.username}
-                onClick={() => setUsername(user.username)}
-                className="cursor-pointer hover:underline">
-                <p>{user.username}</p>
-              </a>
-            );
-          })}
-      </div>
-      {!loading && username && (
+      {!username && (
+        <UserList
+          onClick={(user) => setUsername(user.username)}
+          className="max-h-80 w-full overflow-auto"
+        />
+      )}
+      {username && (
         <div className="text-left">
           <RadioGroup onClick={nodeOptionHandler} options={options} />
         </div>
       )}
       <Button onClick={clearHandler}>Clear</Button>
+      {username && (
+        <div className="mt-16">
+          <h2 className="text-2xl">Details & Configuations</h2>
+          <SecondaryInfoPanel />
+        </div>
+      )}
     </div>
   );
 };

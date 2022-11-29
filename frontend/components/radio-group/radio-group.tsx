@@ -23,7 +23,7 @@ export const RadioGroup: FC<Props> = ({ options, onClick }) => {
   };
 
   return (
-    <div className="w-full p-4">
+    <div className="w-full p-4 pb-0">
       <div className="mx-auto w-full max-w-md">
         <HRadioGroup value={selected} onChange={clickedHandler}>
           <HRadioGroup.Label className="sr-only">
