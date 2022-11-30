@@ -1,3 +1,4 @@
+export { follows } from "./follows";
 export { following } from "./following";
 export { shortestPath } from "./shortestPath";
 export { tweets } from "./tweets";

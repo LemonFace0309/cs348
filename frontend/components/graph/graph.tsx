@@ -102,5 +102,9 @@ export const Graph: FC = () => {
     initGraph();
   }, [username, mode, destinationUser]);
 
-  return <div id="graph" ref={graphRef} className="h-full grow" />;
+  return (
+    <div id="graph" ref={graphRef} className="h-full">
+      <h6 className="text-9xl">Loading...</h6>
+    </div>
+  );
 };
