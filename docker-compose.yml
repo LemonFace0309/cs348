@@ -9,7 +9,10 @@ services:
       - neo4j_data:/data
       - ./scripts/lib/import:/var/lib/neo4j/import
     environment:
+      - NEO4J_apoc_export_file_enabled=true 
+      - NEO4J_apoc_import_file_enabled=true 
+      - NEO4J_apoc_import_file_use__neo4j__config=true 
       - NEO4J_AUTH=neo4j/development
-      - NEO4JLABS_PLUGINS=["graph-data-science"]
+      - NEO4JLABS_PLUGINS=["graph-data-science", "apoc"]
 volumes:
   neo4j_data:
