@@ -49,3 +49,31 @@ yarn dev
 ```
 
 3. Open `http://localhost:8000/graphql` in your browser
+
+### Export the entire graph
+
+1. Run `docker-compose up` to create a local instance of Neo4J.
+
+2. Open up `http://localhost:7474` in the browser and login with username: `neo4j` and password: `development`
+
+3. Run the following command in the terminal at the top of the browser application
+
+```
+CALL apoc.export.cypher.all("graph.cypher")
+```
+
+4. A cypher file titled "graph.cypher" that generates all nodes and relationships will be found in /lib/import
+
+### Import the entire graph
+
+1. Run `docker-compose up` to create a local instance of Neo4J.
+
+2. Open up `http://localhost:7474` in the browser and login with username: `neo4j` and password: `development`
+
+3. Copy the source cypher file into /lib/import
+
+4. Run the following command in the terminal at the top of the browser application
+
+```
+CALL apoc.cypher.runFile("graph.cypher")
+```
