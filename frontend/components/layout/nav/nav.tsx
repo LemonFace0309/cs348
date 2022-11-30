@@ -23,7 +23,7 @@ export const Nav: FC = () => {
           className="cursor-pointer transition hover:-rotate-3 hover:scale-105"
         />
       </Link>
-      {isAuthenticated ? (
+      {!isAuthenticated ? (
         <Button onClick={switchAuth}>Login</Button>
       ) : (
         <Button onClick={switchAuth}>Sign Out</Button>

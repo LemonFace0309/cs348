@@ -65,6 +65,7 @@ export const Filter: FC = () => {
       </div>
       {username && (
         <div className="mt-16 w-full">
+          <hr />
           <h2 className="text-2xl">Details & Configuations</h2>
           <SecondaryInfoPanel />
         </div>

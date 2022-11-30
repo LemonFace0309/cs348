@@ -147,7 +147,11 @@ async function fetchTweets(client: TwitterApiReadOnly, session: Session) {
   }
 }
 
-async function fetchFollowing(client: TwitterApiReadOnly, session: Session) {
+async function fetchFollowing(
+  client: TwitterApiReadOnly,
+  session: Session,
+  index = 0
+) {
   console.log('Fetching follows:');
   let curName = '';
   try {
@@ -158,9 +162,10 @@ async function fetchFollowing(client: TwitterApiReadOnly, session: Session) {
         name: record.get('u').properties.name,
         twitterId: record.get('u').properties.twitterId,
       }));
+    const slicedAccounts = accounts.slice(index);
 
     // calling api
-    for (const [i, account] of accounts.entries()) {
+    for (const [i, account] of slicedAccounts.entries()) {
       if (!account.twitterId) continue;
       // eslint-disable-next-line no-constant-condition
       curName = account.name;
@@ -201,14 +206,17 @@ async function fetchFollowing(client: TwitterApiReadOnly, session: Session) {
           followingTwitterIdsParam: followingTwitterIds.map(id => int(+id)),
         }
       );
+      index++;
 
       outputProgress(
-        i + 1,
-        i === accounts.length - 1,
+        index + 1,
+        index === accounts.length - 1,
         `${curName} follows ${followingTwitterIds.length} users`
       );
     }
   } catch (err) {
     console.log(`Failed to get follows for ${curName}:`, err);
+    await sleep(90000); // 1.2 minutes
+    fetchFollowing(client, session, index);
   }
 }
