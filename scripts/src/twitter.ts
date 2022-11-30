@@ -186,7 +186,7 @@ async function fetchFollowing(client: TwitterApiReadOnly, session: Session) {
           following.data.map(user => user.id)
         );
         paginationCount++;
-        await sleep(72000); // 1.2 minutes
+        await sleep(90000); // 1.2 minutes
       }
 
       // adding follows relation to db

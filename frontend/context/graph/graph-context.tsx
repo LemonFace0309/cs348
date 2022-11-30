@@ -11,7 +11,7 @@ export const GraphContext = createContext<ContextProps>({
   setUsername: () => null,
   destinationUser: "",
   setDestinationUser: () => null,
-  mode: null,
+  mode: "relationships",
   setMode: () => null,
 });
 
@@ -20,7 +20,7 @@ export const GraphProvider: FC<{
 }> = ({ children }) => {
   const [username, setUsername] = useState("");
   const [destinationUser, setDestinationUser] = useState("");
-  const [mode, setMode] = useState<Mode | null>(null);
+  const [mode, setMode] = useState<Mode | null>("relationships");
 
   const value = {
     username,

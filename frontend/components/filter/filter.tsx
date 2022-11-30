@@ -5,6 +5,7 @@ import type { Option } from "@src/components/radio-group";
 import { RadioGroup } from "@src/components/radio-group";
 import { SecondaryInfoPanel } from "@src/components/secondary-info-panel";
 import { UserList } from "@src/components/user-list";
+import { useAuthContext } from "@src/context/auth";
 import { useGraphContext } from "@src/context/graph";
 import { Mode } from "@src/context/graph/types";
 
@@ -26,21 +27,21 @@ const options: Option[] = [
 export const Filter: FC = () => {
   const { username, setUsername, setMode, setDestinationUser } =
     useGraphContext();
+  const { isAuthenticated } = useAuthContext();
 
   const nodeOptionHandler = (option: Option) => {
-    console.log(option.text.toLowerCase());
     setMode(option.text.toLowerCase() as Mode);
   };
 
   const clearHandler = () => {
     setUsername("");
     setDestinationUser("");
-    setMode(null);
+    setMode("relationships");
   };
 
   return (
     <div className="flex w-48 flex-col items-center space-y-5 p-4 text-center 2xl:w-96">
-      <h1 className="text-4xl">Filter</h1>
+      <h1 className="text-4xl">{username ? username : "Filter"}</h1>
       {!username && (
         <UserList
           onClick={(user) => setUsername(user.username)}
@@ -52,9 +53,18 @@ export const Filter: FC = () => {
           <RadioGroup onClick={nodeOptionHandler} options={options} />
         </div>
       )}
-      <Button onClick={clearHandler}>Clear</Button>
+      <div className="flex w-full items-center justify-center space-x-6">
+        <Button onClick={clearHandler}>Clear</Button>
+        {isAuthenticated && username ? (
+          <Button onClick={() => null} level="warn">
+            Remove User
+          </Button>
+        ) : isAuthenticated ? (
+          <Button onClick={() => null}>Add User</Button>
+        ) : null}
+      </div>
       {username && (
-        <div className="mt-16">
+        <div className="mt-16 w-full">
           <h2 className="text-2xl">Details & Configuations</h2>
           <SecondaryInfoPanel />
         </div>
