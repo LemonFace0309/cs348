@@ -41,7 +41,7 @@ export const AddUserButton = () => {
   return (
     <>
       <Dialog
-        title="Enter A Peron's Twitter Username"
+        title="Enter A Person's Twitter Username"
         open={modalIsOpen}
         setOpen={setModalisOpen}>
         <div className="mt-4">
