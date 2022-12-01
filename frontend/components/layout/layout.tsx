@@ -14,7 +14,7 @@ export const Layout: FC<Props> = ({ children }) => {
   return (
     <div
       className={cx(
-        "flex min-h-screen flex-col bg-slate-100 2xl:h-screen",
+        "flex min-h-screen flex-col 2xl:h-screen",
         styles.container
       )}>
       <div className="bg-green-700">
@@ -24,7 +24,7 @@ export const Layout: FC<Props> = ({ children }) => {
       </div>
       <main
         className={cx(
-          "flex grow flex-col items-center justify-center px-12 2xl:px-36",
+          "flex grow flex-col items-center justify-center bg-slate-100 px-12 2xl:px-36",
           styles.main
         )}>
         {children}

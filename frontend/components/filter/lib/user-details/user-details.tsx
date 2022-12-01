@@ -39,16 +39,16 @@ export const UserDetails: FC<Props> = ({ onClick }) => {
             <b>Username:</b> {data.user.username}
           </p>
           <p className="text-lg">
-            <b>createdAt:</b> {data.user.createdAt}
+            <b>Created At:</b> {data.user.createdAt}
           </p>
           <p className="text-lg">
-            <b>followersCount:</b> {data.user.followersCount}
+            <b>Followers Count:</b> {data.user.followersCount}
           </p>
           <p className="text-lg">
-            <b>followingCount:</b> {data.user.followingCount}
+            <b>Following Count:</b> {data.user.followingCount}
           </p>
           <p className="text-lg">
-            <b>tweetCount:</b> {data.user.tweetCount}
+            <b>Wweet Count:</b> {data.user.tweetCount}
           </p>
         </div>
       )}

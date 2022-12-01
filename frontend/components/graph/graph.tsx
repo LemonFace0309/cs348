@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { FC, MutableRefObject, useEffect, useRef } from "react";
 
 import cx from "classnames";
@@ -10,6 +11,21 @@ import styles from "./graph.module.css";
 export const Graph: FC = () => {
   const { username, mode, destinationUser } = useGraphContext();
   const graphRef = useRef() as MutableRefObject<HTMLDivElement>;
+
+  // useEffect(() => {
+  //   const img = document.createElement("img");
+  //   img.setAttribute("src", "/legend.png");
+  //   img.setAttribute("src", "/legend.png");
+  //   img.setAttribute("height", "100");
+  //   img.style.position = "absolute";
+  //   img.style.bottom = "0";
+  //   img.style.left = "0";
+  //   img.style.left = "0";
+  //   img.style.left = "0";
+
+  //   const graphDiv = document.getElementById("graph");
+  //   graphDiv?.appendChild(img);
+  // }, []);
 
   useEffect(() => {
     const initGraph = async () => {
@@ -131,8 +147,16 @@ export const Graph: FC = () => {
   }, [username, mode, destinationUser]);
 
   return (
-    <div id="graph" ref={graphRef} className={cx("h-screen", styles.graph)}>
-      <h6 className="text-9xl">Loading...</h6>
+    <div className={cx("h-screen w-full", styles.graph)}>
+      <Image
+        src="/legend.png"
+        alt="legend"
+        height="300"
+        width="300"
+        className="absolute bottom-0 left-0 z-10 m-4"></Image>
+      <div id="graph" ref={graphRef} className={cx("h-screen", styles.graph)}>
+        <h6 className="text-9xl">Loading...</h6>
+      </div>
     </div>
   );
 };
