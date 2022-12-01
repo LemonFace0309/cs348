@@ -70,9 +70,7 @@ CALL apoc.export.cypher.all("graph.cypher")
 
 2. Open up `http://localhost:7474` in the browser and login with username: `neo4j` and password: `development`
 
-3. Copy the source cypher file into /lib/import
-
-4. Run the following command in the terminal at the top of the browser application
+3. Run the following command in the terminal at the top of the browser application
 
 ```
 CALL apoc.cypher.runFile("graph.cypher")
