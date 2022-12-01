@@ -1,9 +1,10 @@
 import { FC } from "react";
 
 import { Button } from "@src/components/button";
+import { AddUserButton } from "@src/components/filter/add-user-button";
+import { SecondaryInfoPanel } from "@src/components/filter/secondary-info-panel";
 import type { Option } from "@src/components/radio-group";
 import { RadioGroup } from "@src/components/radio-group";
-import { SecondaryInfoPanel } from "@src/components/secondary-info-panel";
 import { UserList } from "@src/components/user-list";
 import { useAuthContext } from "@src/context/auth";
 import { useGraphContext } from "@src/context/graph";
@@ -60,7 +61,7 @@ export const Filter: FC = () => {
             Remove User
           </Button>
         ) : isAuthenticated ? (
-          <Button onClick={() => null}>Add User</Button>
+          <AddUserButton />
         ) : null}
       </div>
       {username && (

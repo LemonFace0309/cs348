@@ -1,0 +1,48 @@
+.label {
+  position: relative;
+}
+
+.label > svg {
+  position: absolute !important;
+  height: 100%;
+  margin: auto 8px;
+}
+
+.input {
+  font-size: 16px;
+  font-size: max(16px, 1rem);
+  font-family: inherit;
+  padding: 4px 8px;
+  background-color: #fff;
+  border: 2px solid #3b82f6;
+  border-radius: 4px;
+  height: 100%;
+  transition: 180ms box-shadow ease-in-out;
+}
+
+.input .inputWithIcon {
+  padding-left: 32px;
+}
+
+.input:not(textarea) {
+  line-height: 1;
+  height: 2.25rem;
+}
+
+.input[readonly] {
+  border-style: dotted;
+  cursor: not-allowed;
+  color: #777;
+}
+
+.input[disabled] {
+  border: 2px solid #ccc;
+  background-color: #eee;
+  cursor: not-allowed;
+}
+
+.input:focus {
+  border-color: hsl(245, 100%, 42%);
+  box-shadow: 0 0 0 3px hsla(245, 100%, calc(42% + 40%), 0.8);
+  outline: 3px solid transparent;
+}
