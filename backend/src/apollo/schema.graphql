@@ -5,6 +5,7 @@ type Query {
   following(username: String!): [User!]!
   follows(username: String!): [User!]!
   shortestPath(input: ShortestPathInput!): [User!]!
+  mutualConnections(input: MutualConnectionsInput!): [String!]!
 }
 
 type Mutation {
@@ -13,6 +14,11 @@ type Mutation {
 }
 
 input ShortestPathInput {
+  startUsername: String!
+  endUsername: String!
+}
+
+input MutualConnectionsInput {
   startUsername: String!
   endUsername: String!
 }
