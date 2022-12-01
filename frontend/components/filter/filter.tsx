@@ -17,12 +17,20 @@ const options: Option[] = [
     subtext: "Arrows point in the diretion of who follows who",
   },
   {
+    text: "Details",
+    subtext: "Provide general information about the user",
+  },
+  {
     text: "Tweets",
     subtext: "Get the three most recent tweets",
   },
   {
     text: "Shortest Path",
     subtext: "Get the shortest path between two users",
+  },
+  {
+    text: "Mutual Follows",
+    subtext: "Find common users these two users follow",
   },
 ];
 
@@ -41,27 +49,32 @@ export const Filter: FC = () => {
     setMode("relationships");
   };
 
+  const ButtonOptions = () => (
+    <>
+      <Button onClick={clearHandler}>Clear</Button>
+      {isAuthenticated && username ? (
+        <RemoveUserButton />
+      ) : isAuthenticated ? (
+        <AddUserButton />
+      ) : null}
+    </>
+  );
+
   return (
     <div className="flex w-48 flex-col items-center space-y-5 p-4 text-center 2xl:w-96">
       <h1 className="text-4xl">{username ? username : "Filter"}</h1>
-      {!username && (
+      {!username ? (
         <UserList
           onClick={(user) => setUsername(user.username)}
           className="max-h-80 w-full overflow-auto"
         />
-      )}
-      {username && (
+      ) : (
         <div className="text-left">
           <RadioGroup onClick={nodeOptionHandler} options={options} />
         </div>
       )}
       <div className="flex w-full items-center justify-center space-x-6">
-        <Button onClick={clearHandler}>Clear</Button>
-        {isAuthenticated && username ? (
-          <RemoveUserButton />
-        ) : isAuthenticated ? (
-          <AddUserButton />
-        ) : null}
+        <ButtonOptions />
       </div>
       {username && (
         <div className="mt-16 w-full">

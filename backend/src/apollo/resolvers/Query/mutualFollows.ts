@@ -1,16 +1,16 @@
 import type { Context } from "@src/server/context";
 import type { User } from "@src/typings";
 
-interface QueryMutualConnectionsArgs {
+interface QueryMutualFollowsArgs {
   input: {
     startUsername: string;
     endUsername: string;
   };
 }
 
-export const mutualConnections = async (
+export const mutualFollows = async (
   _root: unknown,
-  args: QueryMutualConnectionsArgs,
+  args: QueryMutualFollowsArgs,
   ctx: Context
 ) => {
   const { neo4j } = ctx;

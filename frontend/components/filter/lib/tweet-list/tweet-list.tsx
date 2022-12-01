@@ -26,17 +26,22 @@ export const TweetList: FC<Props> = ({ onClick }) => {
   });
 
   return (
-    <div className="w-full">
-      <h4 className="text-xl">tweetId &middot; text &middot; createdAt</h4>
+    <div className="max-h-80 w-full overflow-auto text-left">
       {!loading &&
         data.tweets.map((tweet: Tweet) => {
           return (
             <div
               key={tweet.tweetId}
               onClick={() => (onClick ? onClick(tweet) : null)}>
-              <p>{tweet.tweetId}</p>
-              <p>{tweet.text}</p>
-              <p>{tweet.createdAt}</p>
+              <p className="text-lg">
+                <b>Tweet Id:</b> {tweet.tweetId}
+              </p>
+              <p className="text-lg">
+                <b>Text:</b> {tweet.text}
+              </p>
+              <p className="text-lg">
+                <b>Created At:</b> {tweet.createdAt}
+              </p>
               <hr></hr>
             </div>
           );

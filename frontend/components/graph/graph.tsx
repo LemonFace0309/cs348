@@ -67,6 +67,18 @@ export const Graph: FC = () => {
 
       if (username) {
         switch (mode) {
+          case "details":
+            config.initialCypher = `
+              MATCH (n:User {username: "${username}"})
+              RETURN n
+            `;
+            break;
+          case "relationships":
+            config.initialCypher = `
+              MATCH n=(User {username: "${username}"})-[:Follows]-()
+              RETURN n
+            `;
+            break;
           case "tweets":
             config.initialCypher = `
               MATCH n=(User {username: "${username}"})-[:Author]->()
@@ -81,6 +93,19 @@ export const Graph: FC = () => {
                   (B:User {username: "${destinationUser}"}),
                   p = allShortestPaths((A)-[r:Follows*]->(B))
                 RETURN p
+              `;
+            } else {
+              config.initialCypher = `
+                MATCH (n:User {username: "${username}"})
+                RETURN n
+              `;
+            }
+            break;
+          case "mutual follows":
+            if (destinationUser) {
+              config.initialCypher = `
+                MATCH n=(A:User {username: "${username}"})-[:Follows]->(N:User)<-[:Follows]-(B:User {username: "${destinationUser}"})
+                RETURN n
               `;
             } else {
               config.initialCypher = `
