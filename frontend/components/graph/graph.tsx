@@ -103,7 +103,7 @@ export const Graph: FC = () => {
   }, [username, mode, destinationUser]);
 
   return (
-    <div id="graph" ref={graphRef} className="h-full">
+    <div id="graph" ref={graphRef} className="2xl:h-screen">
       <h6 className="text-9xl">Loading...</h6>
     </div>
   );
