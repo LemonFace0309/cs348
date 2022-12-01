@@ -12,7 +12,11 @@ type Props = {
 
 export const Layout: FC<Props> = ({ children }) => {
   return (
-    <div className="flex min-h-screen flex-col bg-slate-100">
+    <div
+      className={cx(
+        "flex min-h-screen flex-col bg-slate-100 2xl:h-screen",
+        styles.container
+      )}>
       <div className="bg-green-700">
         <div className="m-auto">
           <Nav />

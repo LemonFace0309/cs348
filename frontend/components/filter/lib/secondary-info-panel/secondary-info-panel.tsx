@@ -1,7 +1,7 @@
 import React from "react";
 
-import { RelationshipTabs } from "@src/components/filter/relationship-tabs";
-import { TweetList } from "@src/components/filter/tweet-list";
+import { RelationshipTabs } from "@src/components/filter/lib/relationship-tabs";
+import { TweetList } from "@src/components/filter/lib/tweet-list";
 import { UserList } from "@src/components/user-list";
 import { useGraphContext } from "@src/context/graph";
 

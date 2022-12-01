@@ -1,8 +1,11 @@
 import { FC, MutableRefObject, useEffect, useRef } from "react";
 
+import cx from "classnames";
 import { NeovisConfig } from "neovis.js/dist/neovis.js";
 
 import { useGraphContext } from "@src/context/graph";
+
+import styles from "./graph.module.css";
 
 export const Graph: FC = () => {
   const { username, mode, destinationUser } = useGraphContext();
@@ -103,7 +106,7 @@ export const Graph: FC = () => {
   }, [username, mode, destinationUser]);
 
   return (
-    <div id="graph" ref={graphRef} className="2xl:h-screen">
+    <div id="graph" ref={graphRef} className={cx("h-screen", styles.graph)}>
       <h6 className="text-9xl">Loading...</h6>
     </div>
   );

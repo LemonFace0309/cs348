@@ -19,7 +19,8 @@
     "cors": "^2.8.5",
     "express": "^4.17.3",
     "graphql": "^16.6.0",
-    "neo4j-driver": "^5.2.0"
+    "neo4j-driver": "^5.2.0",
+    "twitter-api-v2": "^1.12.9"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "2.6.2",

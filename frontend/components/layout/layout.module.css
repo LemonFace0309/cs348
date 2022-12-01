@@ -1,4 +1,8 @@
 @media (min-width: 1920px) {
+  .container {
+    height: 100vh;
+  }
+
   .main {
     flex-direction: row;
   }

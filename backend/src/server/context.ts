@@ -2,7 +2,7 @@
 // import { SchemaLink } from "@apollo/client/link/schema";
 import * as dotenv from 'dotenv';
 import { NextFunction, Request, Response } from "express";
-import neo4j, { Driver, Session } from "neo4j-driver";
+import neo4j, { Session } from "neo4j-driver";
 
 // import { schema } from "@src/server/schema";
 
@@ -22,7 +22,7 @@ export const initContext = () => {
   );
   const session = driver.session({
     database: process.env.NEO4J_DB as string,
-    defaultAccessMode: neo4j.session.READ,
+    defaultAccessMode: neo4j.session.WRITE,
   });
 
   return new Context({ neo4j: session });

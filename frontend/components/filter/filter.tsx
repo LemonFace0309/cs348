@@ -1,8 +1,9 @@
 import { FC } from "react";
 
 import { Button } from "@src/components/button";
-import { AddUserButton } from "@src/components/filter/add-user-button";
-import { SecondaryInfoPanel } from "@src/components/filter/secondary-info-panel";
+import { AddUserButton } from "@src/components/filter/lib/add-user-button";
+import { RemoveUserButton } from "@src/components/filter/lib/remove-user-button";
+import { SecondaryInfoPanel } from "@src/components/filter/lib/secondary-info-panel";
 import type { Option } from "@src/components/radio-group";
 import { RadioGroup } from "@src/components/radio-group";
 import { UserList } from "@src/components/user-list";
@@ -57,9 +58,7 @@ export const Filter: FC = () => {
       <div className="flex w-full items-center justify-center space-x-6">
         <Button onClick={clearHandler}>Clear</Button>
         {isAuthenticated && username ? (
-          <Button onClick={() => null} level="warn">
-            Remove User
-          </Button>
+          <RemoveUserButton />
         ) : isAuthenticated ? (
           <AddUserButton />
         ) : null}
