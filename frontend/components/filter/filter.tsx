@@ -1,4 +1,7 @@
+import Link from "next/link";
 import { FC } from "react";
+
+import { AiOutlineLink } from "react-icons/ai";
 
 import { Button } from "@src/components/button";
 import { AddUserButton } from "@src/components/filter/lib/add-user-button";
@@ -62,7 +65,19 @@ export const Filter: FC = () => {
 
   return (
     <div className="flex w-48 flex-col items-center space-y-5 p-4 text-center 2xl:w-96">
-      <h1 className="text-4xl">{username ? username : "Filter"}</h1>
+      <h1 className="text-4xl">
+        {username ? (
+          <Link
+            href={`https://twitter.com/${username}`}
+            target="_blank"
+            className="flex cursor-pointer content-center items-center hover:underline">
+            <p>{username}</p>
+            <AiOutlineLink size={48} />
+          </Link>
+        ) : (
+          "Filter"
+        )}
+      </h1>
       {!username ? (
         <UserList
           onClick={(user) => setUsername(user.username)}
