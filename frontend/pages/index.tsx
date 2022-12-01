@@ -14,7 +14,7 @@ const Home: NextPage = () => {
   return (
     <AuthProvider>
       <Head>
-        <title>Social Network Graph</title>
+        <title>Squiggles</title>
       </Head>
       <Layout>
         <GraphProvider>

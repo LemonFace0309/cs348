@@ -13,15 +13,12 @@ export const Nav: FC = () => {
   };
 
   return (
-    <nav className="flex justify-between p-4 ">
-      <Link href="/">
-        <Image
-          src="/logo.png"
-          alt="logo"
-          width={30}
-          height={30}
-          className="cursor-pointer transition hover:-rotate-3 hover:scale-105"
-        />
+    <nav className="flex justify-between p-4">
+      <Link
+        href="/"
+        className="flex items-center transition hover:-rotate-3 hover:scale-105">
+        <Image src="/logo.png" alt="logo" width={30} height={30} />
+        <h1 className="ml-4 text-4xl text-white">Squiggles</h1>
       </Link>
       {!isAuthenticated ? (
         <Button onClick={switchAuth}>Login</Button>
