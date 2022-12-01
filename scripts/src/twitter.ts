@@ -91,6 +91,18 @@ async function fetchUsers(client: TwitterApiReadOnly, session: Session) {
   } catch (err) {
     console.log('Unabled to get all users:', err);
   }
+
+  // DELETEING USERS without a twitter anymore
+  try {
+    const res = await session.run(
+      'MATCH (n:User) WHERE n.twitterId IS NULL DETACH DELETE n;'
+    );
+    console.log(
+      `${res.records.length} users were deleted for deactived twitter accounts`
+    );
+  } catch (err) {
+    console.log('Unable to delete deactivated accoutns:', err);
+  }
 }
 
 async function fetchTweets(client: TwitterApiReadOnly, session: Session) {

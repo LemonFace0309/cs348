@@ -79,6 +79,7 @@ export const Graph: FC = () => {
         },
         // consoleDebug: true,
         initialCypher: "MATCH n=(:User)-[:Follows]->() RETURN n LIMIT 50",
+        // initialCypher: "MATCH n=(:User)-[:Follows]->() RETURN n",
       };
 
       if (username) {
