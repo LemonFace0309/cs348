@@ -39,6 +39,11 @@ export const Graph: FC = () => {
           serverUrl: process.env.NEXT_PUBLIC_NEO4J_URI,
           serverUser: process.env.NEXT_PUBLIC_NEO4J_USERNAME,
           serverPassword: process.env.NEXT_PUBLIC_NEO4J_PASSWORD,
+          // necessary for connected to auraDB instance
+          driverConfig: {
+            encrypted: "ENCRYPTION_ON",
+            trust: "TRUST_SYSTEM_CA_SIGNED_CERTIFICATES",
+          },
         },
         visConfig: {
           nodes: {
